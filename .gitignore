@@ -1,3 +1,4 @@
-**/*.input
+**/*.txt
+!**/CMakeLists.txt
 *.swp
 build/
