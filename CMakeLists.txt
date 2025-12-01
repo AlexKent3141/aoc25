@@ -15,4 +15,4 @@ function(create_day_target name)
 endfunction()
 
 # Add directories for each day here.
-# ...
+add_subdirectory(day1)
