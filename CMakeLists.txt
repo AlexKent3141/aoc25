@@ -14,6 +14,8 @@ function(create_day_target name)
       -Wall -Wextra -Wpedantic -Werror)
 endfunction()
 
+add_subdirectory(common)
+
 # Add directories for each day here.
 add_subdirectory(day1)
 add_subdirectory(day2)
