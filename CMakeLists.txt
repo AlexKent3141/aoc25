@@ -11,7 +11,7 @@ function(create_day_target name)
 
   target_compile_options(${name}
     PRIVATE
-      -Wall -Wextra -Wpedantic -Werror)
+      -Wall -Wextra -Wpedantic -Werror -O3)
 endfunction()
 
 add_subdirectory(common)
@@ -24,3 +24,4 @@ add_subdirectory(day4)
 add_subdirectory(day5)
 add_subdirectory(day6)
 add_subdirectory(day7)
+add_subdirectory(day8)
