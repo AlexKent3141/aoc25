@@ -16,6 +16,7 @@ struct point {
 /* Will sort these and keep a stack of edges so we know which to consider next. */
 struct edge {
   int i, j;
+  float length;
 } edges[NUM_POINTS * NUM_POINTS];
 
 int edge_stack_index = 0;
@@ -35,9 +36,6 @@ int is_connected(int n1, int n2) {
   }
   return 0;
 }
-
-/* Distance matrix. */
-float distances[NUM_POINTS][NUM_POINTS];
 
 float distance(struct point p1, struct point p2) {
   return sqrt(pow(p1.x - p2.x, 2) + pow(p1.y - p2.y, 2) + pow(p1.z - p2.z, 2));
@@ -103,8 +101,8 @@ int edge_cmp(const void* a, const void* b) {
   const struct edge* e1 = a;
   const struct edge* e2 = b;
 
-  float len1 = distances[e1->i][e1->j];
-  float len2 = distances[e2->i][e2->j];
+  float len1 = e1->length;
+  float len2 = e2->length;
 
   return len1 > len2;
 }
@@ -130,11 +128,10 @@ int main() {
   for (i = 0; i < NUM_POINTS; ++i) {
     for (j = 0; j < NUM_POINTS; ++j) {
       dist = i != j ? distance(pts[i], pts[j]) : FLT_MAX;
-      distances[i][j] = dist;
-      distances[j][i] = dist;
 
       edges[i * NUM_POINTS + j].i = i;
       edges[i * NUM_POINTS + j].j = j;
+      edges[i * NUM_POINTS + j].length = dist;
     }
   }
 
